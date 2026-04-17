@@ -4,7 +4,7 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
 
-int main() {
+
     // Nível Novato - Posicionamento dos Navios
     // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
@@ -35,6 +35,62 @@ int main() {
     // 0 0 1 0 0
     // 1 1 1 1 1
     // 0 0 1 0 0
+    int main() {
+        printf("     ");
+        printf("TABULEIRO NAVAL");
+
+        printf("\n");
+        printf("\n");
+
+        char linha[] = {'A','B','C','D','E','F','G','H','I','J'};//vetor de linhas para ficar em cima do tabuleiro
+
+        int tabuleiro[10][10] = {0};//matriz da tabela
+
+        //navios
+        int navioV[3] = {3,3,3};
+        int navioH[3] = {3,3,3};
+
+        //posições dos navios
+        int linhaVertical = 3;
+        int colunaVertical = 6;
+        
+        int linhaHorizontal = 9;
+        int colunaHorizontal = 0;
+
+        //movimentação vertical
+        if(linhaVertical + 3 <= 10){
+            for(int i = 0 ; i < 3;i++){
+                tabuleiro[linhaVertical + i][colunaVertical] = navioV[i];
+            }
+        }
+         //movimentação horizontal
+        if(colunaHorizontal + 3 <= 10){
+            for(int i = 0 ; i < 3;i++){
+                tabuleiro[linhaHorizontal ][colunaHorizontal + i] = navioH[i];
+            }
+        }
+
+
+
+        printf("   ");//identação pra ficar alinhado
+
+        for (int i = 0; i < 10; i++){//loop linhas em cima do tabuleiro
+
+            printf("%c ", linha[i]);//linha de letras do tabuleiro
+        }
+        
+        printf("\n");
+        
+        for(int i = 0; i < 10; i++){//loop linhas da tabela
+            printf("%d  ",i);//números do lado do tabuleiro
+
+            for(int j = 0; j <10; j++)//loop colunas da tabela
+            {
+                printf("%d ",tabuleiro[i][j]);//zeros do tabuleiro
+            }
+            printf("\n");
+        }
+     
 
     return 0;
 }

@@ -36,6 +36,9 @@
     // 1 1 1 1 1
     // 0 0 1 0 0
     int main() {
+        int podeColocarDireita = 1;
+        int podeColocarHorizontal = 1;
+        int podeColocarEsquerda = 1;
         printf("     ");
         printf("TABULEIRO NAVAL");
 
@@ -49,25 +52,91 @@
         //navios
         int navioV[3] = {3,3,3};
         int navioH[3] = {3,3,3};
+        int navioDiagonalDireita[3] = {3,3,3};
+        int navioDiagonalEsquerda[3] ={3,3,3};
 
         //posições dos navios
         int linhaVertical = 3;
         int colunaVertical = 6;
         
-        int linhaHorizontal = 9;
-        int colunaHorizontal = 0;
 
+        int linhaHorizontal = 4;
+        int colunaHorizontal = 2;
+
+        int linhaDiagonalDireita = 4;
+        int colunaDiagonalDireita = 7;
+
+        int linhaDiagonalEsquerda = 0;
+        int colunaDiagonalEsquerda = 4;
+
+        
         //movimentação vertical
         if(linhaVertical + 3 <= 10){
             for(int i = 0 ; i < 3;i++){
                 tabuleiro[linhaVertical + i][colunaVertical] = navioV[i];
             }
         }
+        //verificação horizontal
+                for(int i = 0; i < 3 ; i++){
+            
+            int l = linhaHorizontal;
+            int c = colunaHorizontal + i;
+
+            if(tabuleiro[l][c] != 0){
+                podeColocarHorizontal = 0;
+                break;
+            }
+        }        
          //movimentação horizontal
-        if(colunaHorizontal + 3 <= 10){
+        if(podeColocarHorizontal && colunaHorizontal + 3 <= 10){
             for(int i = 0 ; i < 3;i++){
                 tabuleiro[linhaHorizontal ][colunaHorizontal + i] = navioH[i];
             }
+        }else{
+            printf("erro de sobreposição na horizontal\n");
+            return 0;
+        }
+        //verficação diagonal baixo direita
+        for(int i = 0; i < 3 ; i++){
+            
+            int l = linhaDiagonalDireita + i;
+            int c = colunaDiagonalDireita + i;
+
+            if(tabuleiro[l][c] != 0){
+                podeColocarDireita = 0;
+                break;
+            }
+        }
+
+        //movimentação diagonal baixo direita
+        if (podeColocarDireita && linhaDiagonalDireita + 3 <= 10 && colunaDiagonalDireita + 3 <= 10){
+            for(int i = 0; i < 3; i++){
+                tabuleiro[linhaDiagonalDireita + i][colunaDiagonalDireita + i] = navioDiagonalDireita[i];
+            }
+        }else{
+            printf("erro de sobreposição na diagonal direita\n");
+            return 0;
+        }
+          //verficação diagonal baixo esquerda
+        for(int i = 0; i < 3 ; i++){
+            
+            int l = linhaDiagonalEsquerda + i;
+            int c = colunaDiagonalEsquerda - i;
+
+            if(tabuleiro[l][c] != 0){
+                podeColocarEsquerda = 0;
+                break;
+            }
+        }
+
+        //movimentação diagonal baixo direita
+        if (podeColocarEsquerda&&linhaDiagonalEsquerda + 3 <= 10 && colunaDiagonalEsquerda + 3 <= 10){
+            for(int i = 0; i < 3; i++){
+                tabuleiro[linhaDiagonalEsquerda + i][colunaDiagonalEsquerda - i] = navioDiagonalEsquerda[i];
+            }
+        }else{
+            printf("erro de sobreposição na diagonal esquerda\n");
+            return 0;
         }
 
 

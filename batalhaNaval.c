@@ -49,6 +49,7 @@
 
         int tabuleiro[10][10] = {0};//matriz da tabela
 
+
         //navios
         int navioV[3] = {3,3,3};
         int navioH[3] = {3,3,3};
@@ -68,6 +69,8 @@
 
         int linhaDiagonalEsquerda = 0;
         int colunaDiagonalEsquerda = 4;
+
+
 
         
         //movimentação vertical
@@ -138,6 +141,68 @@
             printf("erro de sobreposição na diagonal esquerda\n");
             return 0;
         }
+
+         //habilidades
+         
+        //cone
+        int cone [3][5] = {0};
+        int centro = 2;
+        int linhaCone = 0;
+        int colunaCone = 5;
+
+        for(int  i = 0; i < 3 ; i++){
+            for(int j = centro - i ; j <= centro + i ; j++){
+                cone[i][j] = 1;
+            }
+        }
+
+        for(int i = 0 ; i < 3 ; i++){
+            for(int j = 0 ; j < 5 ; j++){
+                if(cone[i][j] == 1){
+                tabuleiro[linhaCone + i][colunaCone + (j - centro)] = 1; 
+                }
+            }
+        }
+        //cruz
+        int cruz [3][5] = {0};
+        int linhaCruz = 6;
+        int colunaCruz = 5;
+
+        for (int i = 0; i < 3; i++){
+            for(int j = 0 ; j < 5 ; j++){
+                if(i == 1 || j == 2){
+                    cruz[i][j] = 1;
+                }
+            }
+        }
+            for(int i = 0 ; i < 3 ; i++){
+             for(int j = 0 ; j < 5 ; j++){
+                if(cruz[i][j] == 1){
+                tabuleiro[linhaCruz + i][colunaCruz + (j - centro)] = 1; 
+                }
+            }
+        }
+
+        //octaedro
+        int octaedro [3][5] = {0};
+        int linhaOctaedro = 4;
+        int colunaOctaedro = 3;
+         for (int i = 0; i < 3; i++){
+            for(int j = 0 ; j < 5 ; j++){
+                if(abs(i - 1)+ abs(j - 2) <= 1){
+                    octaedro[i][j] = 1;
+                }
+            }
+        }
+          for(int i = 0 ; i < 3 ; i++){
+             for(int j = 0 ; j < 5 ; j++){
+                if(octaedro[i][j] == 1){
+                tabuleiro[linhaOctaedro + i][colunaOctaedro + (j - centro)] = 1; 
+                }
+            }
+        }
+    
+        
 
 
 
